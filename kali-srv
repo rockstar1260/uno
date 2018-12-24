@@ -1,0 +1,18 @@
+#!/bin/bash
+
+service apache2 start
+service ssh start
+rm /var/www/html/index.html
+rm /var/www/html/index.nginx-debian.html
+cd /var/www/html && wget https://raw.githubusercontent.com/rockstar1260/uno/master/index.html
+rm /etc/network/interfaces
+touch /etc/network/interfaces
+echo auto eth0 >> /etc/network/interfaces
+echo iface eth0 inet static >> /etc/network/interfaces
+echo address 192.168.0.2 >> /etc/network/interfaces
+echo netmask 255.255.255.0 >> /etc/network/interfaces
+echo network 192.168.0.0 >> /etc/network/interfaces
+echo broadcast 192.168.0.255 >> /etc/network/interfaces
+echo gateway 192.168.0.1 >> /etc/network/interfaces
+sleep 1
+service network-manager restart
