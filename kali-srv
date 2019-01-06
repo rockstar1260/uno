@@ -16,10 +16,15 @@ echo broadcast 192.168.0.255 >> /etc/network/interfaces
 echo gateway 192.168.0.1 >> /etc/network/interfaces
 sleep 1
 service network-manager restart
-cd /usr/loca/srv
+cd /usr/local/srv
 wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
 tar xzf *.tar.gz
 cd noip-2*
 make
 sleep 2
 make install
+apt-get install x11vnc -y
+touch /usr/bin/pantalla
+chmod +x /usr/bin/pantalla
+echo #!/bin/bash >> /usr/bin/pantalla
+echo x11vnc -scale 1366x768 >> /usr/bin/pantalla
