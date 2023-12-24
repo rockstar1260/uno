@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo ingresa la ip raiz
+read IP
+nmap -Pn $IP/24 -p 445 -oG ~/hola
+cat ~/hola | grep open > ~/listahola
+cat ~/listahola | cut -f2 -d ":" | cut -f1 -d "(" > ~/vulnerablesblue
+rm ~/hola && rm ~/listahola
+clear
+cat ~/vulnerablesblue
+sleep 200
+
+
+
